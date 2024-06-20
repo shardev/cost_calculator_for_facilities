@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Appointments</title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row mt-5 p-2">
+        <div class="col-md-3">
+            <div th:insert="sideBar   ::  mynavigaton"></div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>
+                        Estimations for your building:
+                    </h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mt-3">
+                    <h4>
+                        Building material estimation:
+                    </h4>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="card-header">
+                    Building material content:
+                </h5>
+                <div class="card-body">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Materials needed:</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Cement in kilos: <b>
+                                <td th:text="${bme.cementKilos}"></td>
+                            </b>kg
+                            </p>
+                            <p>Rock in tons: <b>
+                                <td th:text="${bme.rockTons}"></td>
+                            </b>t
+                            </p>
+                            <p>Sand in tons: <b>
+                                <td th:text="${bme.sandTons}"></td>
+                            </b>t
+                            </p>
+                            <p>Armature in m2: <b>
+                                <td th:text="${bme.armatureMeters2}"></td>
+                            </b>m2
+                            </p>
+                            <p>Electrical installations in m: <b>
+                                <td th:text="${bme.electricalInstallationCablesMeters}"></td>
+                            </b>m
+                            </p>
+                            <p>Watter pipes meters in m: <b>
+                                <td th:text="${bme.watterPipeMeters}"></td>
+                            </b>m
+                            </p>
+                            <p>Hydroisolation in m2: <b>
+                                <td th:text="${bme.hydroIsolationMeters2}"></td>
+                            </b>m2
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- carpentry units -->
+                <div class="card p-3 m-3" th:each="f: ${bme.building.floor}">
+                    <div th:each="cu : ${f.carpentryUnits}">
+                        <p>Carpentry unit : <b>
+                            <td th:text="${cu.width}"></td>
+                            x
+                            <td th:text="${cu.height}"></td>
+                            ,
+                            is door:
+                            <td th:text="${cu.door}"></td>
+                            x
+                        </b>m2
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="card">
+                    <!-- Facade  -->
+                    <div class="card p-3 m-3">
+                        <div class="card-header">
+                        <h5>Facade</h5>
+                        </div>
+                        <p>Styrofoam width : <b>
+                            <td th:text="${bme.building.facade.styrofoamWidth}"></td>
+                            cm</b></p>
+
+                        <p>Styrofoam surface area : <b>
+                            <td th:text="${bme.building.facade.styrofoamSurfaceArea}"></td>
+                            m2</b></p>
+
+                        <p>Facade net surface area : <b>
+                            <td th:text="${bme.building.facade.facadeNetSurfaceArea}"></td>
+                            m2</b></p>
+
+                        <p>Facade final mass kilos : <b>
+                            <td th:text="${bme.building.facade.facadeFinalMassKilos}"></td>
+                            kg</b></p>
+
+                        <p>Facade adhesive kilos : <b>
+                            <td th:text="${bme.building.facade.facadeAdhesiveKilos}"></td>
+                            m2</b></p>
+
+                    </div>
+
+                    <div class="card">
+                        <!-- Heating  -->
+                        <div class="card p-3 m-3">
+                            <div class="card-header">
+                            <h5>Heating</h5>
+                            </div>
+                            <p>Heating type : <b>
+                                <td th:text="${bme.building.heating.heatingType}"></td>
+                            </b></p>
+
+                            <p>Heating units counter : <b>
+                                <td th:text="${bme.building.heating.heatingUnitsCounter}"></td>
+                            </b></p>
+
+                            <p>Heating pipe meters <b>
+                                <td th:text="${bme.building.heating.heatingPipeMeters}"></td>
+                            </b></p>
+
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <!-- Roof  -->
+                        <div class="card p-3 m-3">
+                            <div class="card-header">
+                            <h5>Roof</h5>
+                            </div>
+                            <p>Roof number of sides: <b>
+                                <td th:text="${bme.building.roof.numberOfSides}"></td>
+                            </b></p>
+
+                            <p>Length per side: <b>
+                                <td th:text="${bme.building.roof.lengthPerSide}"></td>
+                            </b></p>
+
+                            <p>Surface Area For Decking: <b>
+                                <td th:text="${bme.building.roof.surfaceAreaForDecking}"></td>
+                            </b></p>
+
+                            <p>Surface Area For Boarding: <b>
+                                <td th:text="${bme.building.roof.surfaceAreaForBoarding}"></td>
+                            </b></p>
+
+                            <p>Surface Area For Foiling <b>
+                                <td th:text="${bme.building.roof.surfaceAreaForFoiling}"></td>
+                            </b></p>
+
+                            <!--<p>Roof Elements Counter: <b>
+                                <td th:text="${bme.building.roof.roofElementsCounter}"></td></b></p> -->
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card">
+                    <!-- Wooden beams flooring -->
+                    <div class="card-header">
+                        <h5>Wooden beams:</h5>
+                    </div>
+                    <table class="table-dark">
+                        <tr>
+                            <th>Height</th>
+                            <th>Width</th>
+                            <th>Length</th>
+                        </tr>
+                        <tr th:each="wb: ${bme.building.roof.woodenBeam}" >
+
+
+                                <td th:text="${wb.height}"></td>
+
+
+                                <td th:text="${wb.width}"></td>
+
+
+                                <td th:text="${wb.length}"></td>
+
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+
+            <div class="card p-3">
+                <!-- rooms flooring -->
+                <h5>Rooms in building:</h5>
+                <div class="card p-3 m-3" th:each="f: ${bme.building.floor}">
+                    <div class="card-header">
+                        <h7>Floor id: <td th:text="${f.id}"></td> </h7>
+                    </div>
+                    <div th:each="r : ${f.room}" class="card-body">
+                        <p>Room: <b>
+                            <td th:text="${r.surfaceArea}"></td>
+                            m2, must be floored with:
+                            <td th:text="${r.flooring}"></td>
+                        </b>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<form th:action="@{/buildings/generate}" th:method="POST">
+    <input type="submit" value="Generate pdf overview">
+    <input type="number" hidden th:value="${bme.building.id}" th:name="bid">
+</form>
+<button ></button>
+</div>
+</div>
+</div>
+</div>
+
+</body>
+</html>

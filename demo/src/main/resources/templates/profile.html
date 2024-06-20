@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row mt-5 p-2">
+        <div class="col-md-3">
+            <div th:insert="sideBar   ::  mynavigaton"></div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>
+                        Profile information:
+                    </h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mt-3">
+                    <h4>
+                        Building orderer:
+                    </h4>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="card-header">
+                    Details about you:
+                </h5>
+                <div class="card-body">
+
+                    <i><p>Name:
+                        <td th:text="${buildingOrderer.name}"></td>
+                        </p></i>
+                    <i><p>Surname
+                        <td th:text="${buildingOrderer.surname}"></td>
+                        </p></i>
+                    <i><p>Email:
+                        <td th:text="${buildingOrderer.email}"></td>
+                        </p></i>
+
+
+                </div>
+                <div class="card-footer">
+                    <a th:href="@{/buildings/buildingsForOrderer}">
+                        <button class="btn btn-primary">
+                            See your buildings
+                        </button>
+                    </a>
+                </div>
+
+            </div>
+
+
+</body>
+</html>

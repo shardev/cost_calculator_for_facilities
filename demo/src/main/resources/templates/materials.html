@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Buy materials</title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row mt-5 p-2">
+        <div class="col-md-3">
+            <div th:insert="sideBar   ::  mynavigaton"></div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>
+                        Buy materials that you need:
+                    </h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mt-3">
+                    <h4>
+                        Building materials:
+                    </h4>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="card-header">
+                    Pricelist from companies:
+                </h5>
+                <div class="card-body">
+                    <div class="card p-2" th:each="pl: ${pricelists}">
+                        <div class="card-header">
+                            <h5 th:text="${pl.buildingMaterial.name}"></h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Seller comapany name:<td th:text="${pl.sellerCompany.CEO}"></td></p>
+                            <p>Price per unit:<td th:text="${pl.price}"></td>$</p>
+                            <p>Amount available in company:<td th:text="${pl.amount}"></td> units</p>
+                        </div>
+                        <div class="card-header">
+                            <img th:src="${pl.buildingMaterial.image}" height="100px">
+                            <br>
+                            <form th:action="@{/materialOrders}" th:method="POST">
+                                <input type="submit" class="btn btn-primary" value="Buy this option">
+                                <input type="number" th:value="${pl.id}" hidden th:name="plId">
+                                <input type="number" th:value="${buildingId}" hidden th:name="buildingId">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

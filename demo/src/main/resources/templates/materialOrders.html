@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Material orders</title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row mt-5 p-2">
+        <div class="col-md-3">
+            <div th:insert="sideBar   ::  mynavigaton"></div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>
+                        Material orders for building
+                    </h2>
+                </div>
+            </div>
+
+            <div class="card">
+                <h5 class="card-header">
+                    Details about your orders
+                </h5>
+                <div class="card-body">
+                    <div th:each="mo: ${materialOrders}">
+                        <p>orderingDate:<td th:text="${mo.orderingDate}"></td></p>
+
+                        <p>Material pricelist:</p>
+
+                        <div th:each="pl: ${mo.materialsPriceList}">
+
+                            <p>Price per unit:<td th:text="${pl.price}"></td></p>
+
+                            <p>Name:<td th:text="${pl.buildingMaterial.name}"></td></p>
+                        </div>
+
+                    </div>
+                </div>
+</body>
+</html>

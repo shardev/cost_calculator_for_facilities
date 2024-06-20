@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Appointments</title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<div th:fragment="mynavigaton" style="background-color: #f0f1f2">
+    <!-- BEGIN NAV -->
+    <ul class="nav flex-column nav-pills">
+        <li class="nav-item">
+            <a class="nav-link active" th:href="@{/buildingOrderers}">Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/buildings/addNew}">Add new building</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" th:href="@{/materialPricelist/choose}">Buy materials</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#">Associates</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#">Notifications</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#">Log out</a>
+        </li>
+
+    </ul>
+</div>
+
+<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+</body>
+</html>
